@@ -7,8 +7,8 @@ import CardComponent from '../../components/card/card';
 
 
 
-function Homepage() {
-   const card1 = { imgSrc:"",  title:"Card 1", text:"", buttonText:""};
+function Home() {
+   const card1 = { imgSrc:"",  title:"Card 1", text:"This is the card number 1", buttonText:""};
    const card2 = { imgSrc:"",  title:"Card 2", text:"", buttonText:""};
    const card3 = { imgSrc:"",  title:"Card 3", text:"", buttonText:""};
 
@@ -24,4 +24,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default Home;
