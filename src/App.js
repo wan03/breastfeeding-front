@@ -1,7 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
+import service from './services/servicetest';
+
+console.log(service.add(4,3));
 
   // Set the configuration for your app
   const firebaseConfig = {

@@ -4,7 +4,7 @@ import {Card, Button } from 'react-bootstrap'
 function CardComponent(props) {
   return (
 <Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src={props.url} />
+  <Card.Img variant="top" src={props.imgSrc} />
   <Card.Body>
     <Card.Title>{props.title}</Card.Title>
     <Card.Text>
