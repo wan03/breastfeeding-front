@@ -6,6 +6,8 @@ import Home from "../pages/home/home";
 import Contact from "../pages/contact/contact";
 import Dashboard from "../pages/dashboard/dashboard";
 import AddPhoto from "../pages/add-photo/addphoto";
+import SignUp from "../pages/sign-up/SignUp";
+import SignIn from "../pages/sign-in/SignIn";
 
 export default function Routes() {
   return (
@@ -23,6 +25,12 @@ export default function Routes() {
           </Route>
           <Route path="/addphoto">
             <AddPhoto />
+          </Route>
+          <Route path="/loginin">
+            <SignIn />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
           </Route>
         </Switch>
       </Router>
