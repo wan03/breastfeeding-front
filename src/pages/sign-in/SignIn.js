@@ -43,8 +43,10 @@ const Login = ({ history }) => {
           Password
           <input name="password" type="password" placeholder="Password" />{" "}
         </label>
-        <button type="submit">Sign Up</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
 };
+
+export default withRouter(Login);

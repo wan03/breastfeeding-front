@@ -10,6 +10,8 @@ function NavbarComponent() {
         <Nav.Link href="/contact">Contact</Nav.Link>
         <Nav.Link href="/dashboard">Dashboard</Nav.Link>
         <Nav.Link href="/addphoto">Add Photo</Nav.Link>
+        <Nav.Link href="/signin">Login</Nav.Link>
+        <Nav.Link href="/signup">Sign Up</Nav.Link>
       </Nav>
     </Navbar>
   );

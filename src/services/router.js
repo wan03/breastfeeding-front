@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { AuthProvider } from "./config/Auth";
+import { AuthProvider } from "../../src/config/Auth";
 //Pages
 import Home from "../pages/home/home";
 import Contact from "../pages/contact/contact";
 import Dashboard from "../pages/dashboard/dashboard";
 import AddPhoto from "../pages/add-photo/addphoto";
 import SignUp from "../pages/sign-up/SignUp";
-import SignIn from "../pages/sign-in/SignIn";
+import Login from "../pages/sign-in/SignIn";
 
 export default function Routes() {
   return (
@@ -26,8 +26,8 @@ export default function Routes() {
           <Route path="/addphoto">
             <AddPhoto />
           </Route>
-          <Route path="/loginin">
-            <SignIn />
+          <Route path="/signin">
+            <Login />
           </Route>
           <Route path="/signup">
             <SignUp />
