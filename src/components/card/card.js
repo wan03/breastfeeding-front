@@ -1,6 +1,13 @@
 import React from 'react';
 import {Card, Button } from 'react-bootstrap'
 
+/**
+ * Reusable Card Component
+ * @param {imgSrc} props 
+ * @param {title} props
+ * @param {text} props
+ * @param {buttonText} props
+ */
 function CardComponent(props) {
   return (
 <Card style={{ width: '18rem' }}>
