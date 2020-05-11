@@ -1,20 +1,18 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { AuthProvider } from "../../src/config/Auth";
 //Pages
-import Home from '../pages/home/home';
-import Contact from '../pages/contact/contact';
-import Dashboard from '../pages/dashboard/dashboard';
-
+import Home from "../pages/home/home";
+import Contact from "../pages/contact/contact";
+import Dashboard from "../pages/dashboard/dashboard";
+import AddPhoto from "../pages/add-photo/addphoto";
+import SignUp from "../pages/sign-up/SignUp";
+import Login from "../pages/sign-in/SignIn";
 
 export default function Routes() {
   return (
-    <Router>
+    <AuthProvider>
+      <Router>
         <Switch>
           <Route exact path="/">
             <Home />
@@ -25,7 +23,17 @@ export default function Routes() {
           <Route path="/dashboard">
             <Dashboard />
           </Route>
+          <Route path="/addphoto">
+            <AddPhoto />
+          </Route>
+          <Route path="/signin">
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
         </Switch>
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 }
