@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import SignOutButton from '../SignOutButton/SignOutButton';
 
 function NavbarComponent() {
   return (
@@ -13,6 +14,7 @@ function NavbarComponent() {
         <Nav.Link href="/signin">Login</Nav.Link>
         <Nav.Link href="/signup">Sign Up</Nav.Link>
       </Nav>
+      <SignOutButton />
     </Navbar>
   );
 }

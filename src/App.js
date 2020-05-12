@@ -1,17 +1,16 @@
 import React from "react";
 import "./App.css";
-import service from "./services/servicetest";
 import Routes from "./services/router";
 import Navbar from "./components/navbar/navbar";
-
-console.log(service.add(4, 3));
+import Firebase from "./config/firebase";
+import FirebaseContext from "./config/firebaseContext";
 
 function App() {
   return (
-    <div>
+    <FirebaseContext.Provider value={Firebase}>
       <Navbar />
       <Routes />
-    </div>
+    </FirebaseContext.Provider>
   );
 }
 
