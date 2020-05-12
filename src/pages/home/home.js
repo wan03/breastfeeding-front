@@ -24,7 +24,6 @@ function Home() {
         <CardComponent {...card2} />
         <CardComponent {...card3} />
       </CardDeck>
-      <button onClick={() => app.auth().signOut()}>Sign Out</button>
     </div>
   );
 }
