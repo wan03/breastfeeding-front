@@ -8,12 +8,11 @@ const Login = ({ history }) => {
   /**
    * Get the Firebase instance from context
    */
-  const Firebase = React.useContext(FirebaseContext);
+  const Firebase = React.useContext(AuthContext);
 
   const handleLogin = useCallback(
     async (event) => {
       event.preventDefault();
-      console.log(event.target.elements);
       const { email, password } = event.target.elements;
       try {
         await Firebase.auth().signInWithEmailAndPassword(
@@ -37,7 +36,7 @@ const Login = ({ history }) => {
    * check to see if there is a current user, if so redirect
    */
   if (currentUser) {
-    return <Redirect to="/" />;
+    return <Redirect to="/addphoto" />;
   }
   return (
     <div>
