@@ -1,44 +1,32 @@
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-import { AuthContext } from "../../config/Auth";
-import FirebaseContext from "../../config/firebaseContext";
+import { useAuth } from "../../config/Auth";
 
 const Login = ({ history }) => {
+
   /**
-   * Get the Firebase instance from context
+   * Get the Auth instance from context
    */
-  const Firebase = React.useContext(FirebaseContext);
+
+  const auth = useAuth();
 
   const handleLogin = useCallback(
     async (event) => {
       event.preventDefault();
-      console.log(event.target.elements);
       const { email, password } = event.target.elements;
+      if(email && password) {
       try {
-        await Firebase.auth().signInWithEmailAndPassword(
-          email.value,
-          password.value
-        );
+        await auth.signIn(email.value, password.value);
         history.push("/");
       } catch (error) {
         alert(error);
       }
+    }
     },
     [history]
   );
 
-  /**
-   * Get the current user from context
-   */
-  const { currentUser } = useContext(AuthContext);
-
-  /**
-   * check to see if there is a current user, if so redirect
-   */
-  if (currentUser) {
-    return <Redirect to="/" />;
-  }
   return (
     <div>
       <h1> Login</h1>

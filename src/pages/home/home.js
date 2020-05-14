@@ -2,7 +2,7 @@ import React from "react";
 import { CardDeck } from "react-bootstrap";
 
 //Components
-import JumbotronComponent from "../../components/jumbotron/jumbotron";
+import JumbotronComponent from "../../components/jumbotron/Jumbotron";
 import CardComponent from "../../components/card/card";
 import { app } from "firebase";
 
