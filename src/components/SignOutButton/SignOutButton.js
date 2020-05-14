@@ -1,14 +1,15 @@
 import  React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import FirebaseContext from '../../config/firebaseContext';
 import ModalComponent from '../modal/Modal';
+import { useAuth } from "../../config/Auth";
  
 const SignOutButton = () => {
 
   /**
-   * Get the Firebase instance from context
+   * Get the Auth instance from context
    */
-  const Firebase = React.useContext(FirebaseContext);
+
+  const auth = useAuth();
 
   const [show, setShow] = useState(false);
 
@@ -24,7 +25,7 @@ const SignOutButton = () => {
   }
 
   const signOut = () => {
-    Firebase.auth().signOut();       
+    auth.signOut();      
     handleShow();
   }
 

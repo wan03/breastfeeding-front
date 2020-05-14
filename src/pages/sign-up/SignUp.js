@@ -1,13 +1,14 @@
 import React, { useCallback } from "react";
 import { withRouter } from "react-router-dom";
 import {Form, Button } from 'react-bootstrap';
-import FirebaseContext from "../../config/firebaseContext";
+import { useAuth } from "../../config/Auth";
 
 const Signup = ({ history }) => {
   /**
-   * Get the Firebase instance from context
+   * Get the Auth instance from context
    */
-  const Firebase = React.useContext(FirebaseContext);
+
+  const auth = useAuth();
 
 
   const handleSignUp = useCallback(
@@ -15,9 +16,7 @@ const Signup = ({ history }) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
-        await Firebase
-          .auth()
-          .createUserWithEmailAndPassword(email.value, password.value);
+        await auth.signUp(email.value, password.value)
         history.push("/");
       } catch (error) {
         alert(error);
@@ -33,11 +32,11 @@ const Signup = ({ history }) => {
       <Form onSubmit={handleSignUp}>
         <Form.Group controlId="formGroupEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Control name="email" type="email" placeholder="Enter email" />
       </Form.Group>
       <Form.Group controlId="formGroupPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
+        <Form.Control name="password" type="password" placeholder="Password" />
       </Form.Group>
       <Button type="submit">Login</Button>
     </Form>
