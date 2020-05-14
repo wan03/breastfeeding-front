@@ -8,6 +8,7 @@ import Dashboard from "../pages/dashboard/dashboard";
 import AddPhoto from "../pages/add-media/AddMedia";
 import SignUp from "../pages/sign-up/SignUp";
 import Login from "../pages/sign-in/SignIn";
+import Slideshow from "../pages/slideshow/Slideshow";
 
 export default function Routes() {
   return (
@@ -22,7 +23,7 @@ export default function Routes() {
           <Route path="/dashboard">
             <Dashboard />
           </Route>
-          <Route path="/addphoto">
+          <Route path="/addmedia">
             <AddPhoto />
           </Route>
           <Route path="/signin">
@@ -30,6 +31,9 @@ export default function Routes() {
           </Route>
           <Route path="/signup">
             <SignUp />
+          </Route>
+          <Route path="/slideshow">
+            <Slideshow />
           </Route>
         </Switch>
       </Router>
