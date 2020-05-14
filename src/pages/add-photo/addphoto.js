@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { render } from "react-dom";
 import { storage } from "../../config/firebase";
 import { logo } from "../../../src/logo.svg";
+import { useAuth } from "../../config/Auth";
 
 function AddPhoto() {
+  const auth = useAuth();
   const [image, setImage] = useState(null);
   const [error, setError] = useState("");
   const [progress, setProgress] = useState(0);
@@ -17,14 +19,14 @@ function AddPhoto() {
         setError("");
         setImage(e.target.files[0]);
       } else {
-        setError("Please selet an image to upload");
+        setError("Please select an image to upload");
         console.log("please select");
       }
     }
   };
   const handleUpload = () => {
-    if (image) {
-      const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    if (image && auth.user) {
+      const uploadTask = storage.ref(`userData/${auth.user.uid}/${image.name}`).put(image);
       uploadTask.on(
         "state_changed",
         (snapshot) => {
