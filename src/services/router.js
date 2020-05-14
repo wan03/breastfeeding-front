@@ -5,13 +5,12 @@ import { AuthProvider } from "../../src/config/Auth";
 import Home from "../pages/home/home";
 import Contact from "../pages/contact/contact";
 import Dashboard from "../pages/dashboard/dashboard";
-import AddPhoto from "../pages/add-photo/addphoto";
+import AddPhoto from "../pages/add-media/AddMedia";
 import SignUp from "../pages/sign-up/SignUp";
 import Login from "../pages/sign-in/SignIn";
 
 export default function Routes() {
   return (
-    <AuthProvider>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -34,6 +33,5 @@ export default function Routes() {
           </Route>
         </Switch>
       </Router>
-    </AuthProvider>
   );
 }

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
+import { Form, Button, ProgressBar, Image } from "react-bootstrap";
+import bsCustomFileInput from 'bs-custom-file-input'
 import { storage } from "../../config/firebase";
 import { logo } from "../../../src/logo.svg";
 import { useAuth } from "../../config/Auth";
 
 function AddPhoto() {
   const auth = useAuth();
-  const [image, setImage] = useState(null);
+  bsCustomFileInput.init();
+  const [media, setMedia] = useState(null);
   const [error, setError] = useState("");
   const [progress, setProgress] = useState(0);
   const [url, setUrl] = useState("");
@@ -14,19 +17,21 @@ function AddPhoto() {
     const file = e.target.files[0];
     if (file) {
       const fileType = file["type"];
-      const validImageTypes = ["image/gif", "image/jpeg", "image/png"];
-      if (validImageTypes.includes(fileType)) {
+      console.log(fileType)
+    const imageTypeCheck = /^image\/.*/;
+    const videoTypeCheck = /^video\/.*/;
+      if (imageTypeCheck.test(fileType) || videoTypeCheck.test(fileType)) {
         setError("");
-        setImage(e.target.files[0]);
+        setMedia(e.target.files[0]);
       } else {
-        setError("Please select an image to upload");
+        setError("Please select an image or video to upload");
         console.log("please select");
       }
     }
   };
   const handleUpload = () => {
-    if (image && auth.user) {
-      const uploadTask = storage.ref(`userData/${auth.user.uid}/${image.name}`).put(image);
+    if (media && auth.user) {
+      const uploadTask = storage.ref(`userData/${auth.user.uid}/${media.name}`).put(media);
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -40,8 +45,8 @@ function AddPhoto() {
         },
         () => {
           storage
-            .ref("images")
-            .child(image.name)
+            .ref(`userData/${auth.user.uid}`)
+            .child(media.name)
             .getDownloadURL()
             .then((url) => {
               setUrl(url);
@@ -50,24 +55,27 @@ function AddPhoto() {
         }
       );
     } else {
-      setError("Error please choose an image to upload");
+      setError("Error please choose an image or video to upload");
     }
   };
   return (
     <div>
-      <p>Add Photos</p>
-      <input type="file" onChange={handleChange} />
-      <button onClick={handleUpload}>Upload</button>
-
-      <p>
-        {progress > 0 ? <progress value={progress} max="100" /> : ""}
+      <h3>Add Photos or Videos</h3>
+      <Form>
+        <Form.Group>
+          <Form.File onChange={handleChange} label="Upload images or videos." custom />
+          <Button onClick={handleUpload}>Upload</Button>
+        </Form.Group>
+      </Form>
+      <div>
+        {progress > 0 ? <ProgressBar now={progress} max="100" animated /> : ""}
         {error}
-      </p>
+      </div>
       <div>
         {url ? (
-          <img src={url} alt="logo" />
+          <Image src={url} alt="User image" />
         ) : (
-          <img src={logo} className="App-logo" alt="logo" />
+          <Image src={logo} className="App-logo" alt="logo" />
         )}
       </div>
     </div>
