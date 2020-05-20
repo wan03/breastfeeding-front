@@ -15,7 +15,8 @@ function NavbarComponent() {
         {auth.user ? (
         <>
         <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-        <Nav.Link href="/addphoto">Add Photo</Nav.Link>
+        <Nav.Link href="/addmedia">Add Media</Nav.Link>
+        <Nav.Link href="/slideshow">Slideshow</Nav.Link>
         </>)
         :
         (null)}
