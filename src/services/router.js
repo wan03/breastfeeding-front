@@ -1,6 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { AuthProvider } from "../../src/config/Auth";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 //Pages
 import Home from "../pages/home/home";
 import Contact from "../pages/contact/contact";
