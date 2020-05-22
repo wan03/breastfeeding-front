@@ -11,7 +11,7 @@ const CarouselImageItem = ({ images }) => (
   <>
     {images.map((image) => {
       return (
-        <MDBCarouselItem itemId={image.index} key={image.index}>
+        <MDBCarouselItem itemId={image.itemId} key={image.name}>
           <MDBView>
             <img
               className="d-block w-100"

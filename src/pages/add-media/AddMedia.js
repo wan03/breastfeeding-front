@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { render } from "react-dom";
 import { Form, Button, ProgressBar, Image } from "react-bootstrap";
 import bsCustomFileInput from 'bs-custom-file-input'
@@ -7,19 +7,21 @@ import { logo } from "../../../src/logo.svg";
 import { useAuth } from "../../config/Auth";
 
 function AddPhoto() {
-  const auth = useAuth();
   bsCustomFileInput.init();
-  const [media, setMedia] = useState(null);
-  const [error, setError] = useState("");
-  const [progress, setProgress] = useState(0);
-  const [url, setUrl] = useState("");
+  const auth = useAuth(),
+  [media, setMedia] = useState(null),
+  [error, setError] = useState(""),
+  [progress, setProgress] = useState(0),
+  [url, setUrl] = useState(""),
+  imageTypeCheck = /^image\/.*/,
+  videoTypeCheck = /^video\/.*/,
+  video = useRef();
+  
+
   const handleChange = (e) => {
-    const file = e.target.files[0];
+  const file = e.target.files[0];
     if (file) {
       const fileType = file["type"];
-      console.log(fileType)
-    const imageTypeCheck = /^image\/.*/;
-    const videoTypeCheck = /^video\/.*/;
       if (imageTypeCheck.test(fileType) || videoTypeCheck.test(fileType)) {
         setError("");
         setMedia(e.target.files[0]);
@@ -51,7 +53,17 @@ function AddPhoto() {
             .then((url) => {
               setUrl(url);
               setProgress(0);
-            });
+            }).then(() =>{
+              if (videoTypeCheck.test(media.type)) {
+              video.current.addEventListener('loadedmetadata', () => {
+              let newMetadata = {customMetadata: {"duration": video.current.duration.toString()}};
+              console.log(newMetadata)
+              storage.ref(`userData/${auth.user.uid}/${media.name}`)
+              .updateMetadata(newMetadata).then(metadata => console.log(metadata))
+              .catch( error => setError(error))
+          })
+        };
+      })
         }
       );
     } else {
@@ -73,7 +85,8 @@ function AddPhoto() {
       </div>
       <div>
         {url ? (
-          <Image src={url} alt="User image" />
+        imageTypeCheck.test(media.type) ? (<Image src={url} alt="User image" />):
+        (<video ref={video}><source src={url} type={media.type} controls></source></video>)
         ) : (
           <Image src={logo} className="App-logo" alt="logo" />
         )}
