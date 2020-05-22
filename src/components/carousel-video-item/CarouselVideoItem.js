@@ -12,9 +12,9 @@ const CarouselVideoItem = ({ videos }) => (
   <>
     {videos.map((video) => {
       return (
-        <MDBCarouselItem itemId={video.itemId} key={video.name} id={video.name} duration={video.duration}>
+        <MDBCarouselItem itemId={video.itemId} key={video.name} duration={video.duration}>
           <MDBView>
-            <video className="d-block video-fluid" controls>
+            <video className="d-block video-fluid" id={video.name} preload="auto">
               <source src={video.downloadURL} type={video.contentType} />
             </video>
           </MDBView>

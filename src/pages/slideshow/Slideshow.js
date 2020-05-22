@@ -79,6 +79,8 @@ function Slideshow() {
       if (currentVideo.length === 1) {
         let currentInterval = currentVideo[0].duration * 1000;
         console.log(currentInterval);
+        let currentVideoNode = document.getElementById(currentVideo[0].name);
+        currentVideoNode.play();
         videoTimer = setTimeout(() => {
           nextSlide();
         }, currentInterval);
@@ -150,13 +152,12 @@ function Slideshow() {
   }, [imageInterval, activeItem]);
 
   return (
-    <div>
       <MDBContainer>
         <MDBCarousel
           ref={slideshow}
           activeItem={1}
           length={length}
-          showControls={true}
+          showControls={false}
           showIndicators={false}
           className="z-depth-1"
           interval={false}
@@ -167,10 +168,6 @@ function Slideshow() {
           </MDBCarouselInner>
         </MDBCarousel>
       </MDBContainer>
-      <div>
-        <button onClick={calculateTiming}>Calculate</button>
-      </div>
-    </div>
   );
 }
 
