@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { MDBJumbotron, MDBBtn } from "mdbreact";
 
 function JumbotronComponent() {
+
+  const [title, setTitle] = useState("Hello, world!"),
+  [body, setBody] = useState("This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information."),
+  [button, setButton] = useState("Learn more");
+
   return (
     <MDBJumbotron>
-      <h1>Hello, world!</h1>
+      <h1>{title}</h1>
       <p>
-        This is a simple hero unit, a simple jumbotron-style component for
-        calling extra attention to featured content or information.
+        {body}
       </p>
       <p>
-        <MDBBtn variant="primary">Learn more</MDBBtn>
+        <MDBBtn variant="primary">{button}</MDBBtn>
       </p>
     </MDBJumbotron>
   );
