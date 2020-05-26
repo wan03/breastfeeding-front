@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { withRouter } from "react-router-dom";
-import {Form, Button } from 'react-bootstrap';
+import { MDBContainer, MDBInputGroup, MDBBtn } from "mdbreact";
 import { useAuth } from "../../config/Auth";
 
 const Signup = ({ history }) => {
@@ -10,37 +10,29 @@ const Signup = ({ history }) => {
 
   const auth = useAuth();
 
-
   const handleSignUp = useCallback(
     async (event) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
-        await auth.signUp(email.value, password.value)
+        await auth.signUp(email.value, password.value);
         history.push("/");
       } catch (error) {
         alert(error);
       }
     },
-    [history]
+    [history, auth]
   );
 
-
   return (
-    <div>
-      <h1> Sign Up Page</h1>
-      <Form onSubmit={handleSignUp}>
-        <Form.Group controlId="formGroupEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control name="email" type="email" placeholder="Enter email" />
-      </Form.Group>
-      <Form.Group controlId="formGroupPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control name="password" type="password" placeholder="Password" />
-      </Form.Group>
-      <Button type="submit">Login</Button>
-    </Form>
-    </div>
+    <MDBContainer>
+      <h1>Sign Up</h1>
+      <form onSubmit={handleSignUp}>
+        <MDBInputGroup material hint="Enter Email" type="email" id="email" />
+        <MDBInputGroup material hint="Password" type="password" id="password" />
+        <MDBBtn type="submit">Login</MDBBtn>
+      </form>
+    </MDBContainer>
   );
 };
 

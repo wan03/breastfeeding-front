@@ -1,36 +1,65 @@
-import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
-import SignOutButton from '../SignOutButton/SignOutButton';
+import React, { useState } from "react";
+import {
+  MDBNavbar,
+  MDBNavbarBrand,
+  MDBNavbarNav,
+  MDBNavItem,
+  MDBNavLink,
+  MDBNavbarToggler,
+  MDBCollapse,
+} from "mdbreact";
+import SignOutButton from "../SignOutButton/SignOutButton";
 import { useAuth } from "../../config/Auth";
 
 function NavbarComponent() {
-  const auth = useAuth();
+  const auth = useAuth(),
+    [isOpen, setIsOpen] = useState(false);
+
+  const toggleCollapse = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
-    <Navbar bg="dark" variant="dark">
-      <Navbar.Brand href="/">Navbar</Navbar.Brand>
-      <Nav className="mr-auto">
-        <Nav.Link href="/">Home</Nav.Link>
-        <Nav.Link href="/contact">Contact</Nav.Link>
-        {auth.user ? (
-        <>
-        <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-        <Nav.Link href="/addmedia">Add Media</Nav.Link>
-        <Nav.Link href="/slideshow">Slideshow</Nav.Link>
-        </>)
-        :
-        (null)}
-        {!auth.user ? (
-        <>
-        <Nav.Link href="/signin">Login</Nav.Link>
-        <Nav.Link href="/signup">Sign Up</Nav.Link>
-        </>)
-        :
-        (null)}
+      <MDBNavbar color="indigo" dark expand="md">
+        <MDBNavbarBrand>Logo</MDBNavbarBrand>
+          <MDBNavbarToggler onClick={toggleCollapse} />
+          <MDBCollapse id="navbarCollapse" isOpen={isOpen} navbar>
+        <MDBNavbarNav left>
+            <MDBNavItem>
+              <MDBNavLink to="/" link>Home</MDBNavLink>
+            </MDBNavItem>
 
-      </Nav>
-      {auth.user ? (<SignOutButton />) : (null)}
-    </Navbar>
+            <MDBNavItem>
+              <MDBNavLink to="/contact" link>Contact</MDBNavLink>
+            </MDBNavItem>
+            {auth.user ? (
+              <>
+                <MDBNavItem>
+                  <MDBNavLink to="dashboard" link>Dashboard</MDBNavLink>
+                </MDBNavItem>
+                <MDBNavItem>
+                  <MDBNavLink to="/addmedia" link>Add Media</MDBNavLink>
+                </MDBNavItem>
+                <MDBNavItem>
+                  <MDBNavLink to="/slideshow" link>Slideshow</MDBNavLink>
+                </MDBNavItem>
+              </>
+            ) : null}
+            {!auth.user ? (
+              <>
+                <MDBNavItem>
+                  <MDBNavLink to="/signin" link>Sign In</MDBNavLink>
+                </MDBNavItem>
+                <MDBNavItem>
+                  <MDBNavLink to="/signup" link>Sign Up</MDBNavLink>
+                </MDBNavItem>
+              </>
+            ) : null}
+        </MDBNavbarNav>
+        {auth.user ? <MDBNavbarNav right><MDBNavItem><SignOutButton /></MDBNavItem></MDBNavbarNav>  : null}
+          </MDBCollapse>
+        
+      </MDBNavbar>
   );
 }
 

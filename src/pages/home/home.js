@@ -1,10 +1,10 @@
 import React from "react";
-import { CardDeck } from "react-bootstrap";
+import { MDBContainer } from "mdbreact";
 
 //Components
 import JumbotronComponent from "../../components/jumbotron/Jumbotron";
 import CardComponent from "../../components/card/card";
-import { app } from "firebase";
+// import { app } from "firebase";
 
 function Home() {
   const card1 = {
@@ -17,14 +17,16 @@ function Home() {
   const card3 = { imgSrc: "", title: "Card 3", text: "", buttonText: "" };
 
   return (
-    <div>
+    <MDBContainer>
       <JumbotronComponent />
-      <CardDeck>
+      <div className="card-deck">
         <CardComponent {...card1} />
+
         <CardComponent {...card2} />
+
         <CardComponent {...card3} />
-      </CardDeck>
-    </div>
+      </div>
+    </MDBContainer>
   );
 }
 

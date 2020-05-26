@@ -1,31 +1,36 @@
-import React from 'react';
-import {Modal, Button } from 'react-bootstrap'
-
+import React from "react";
+import {
+  MDBBtn,
+  MDBModal,
+  MDBModalBody,
+  MDBModalHeader,
+  MDBModalFooter,
+} from "mdbreact";
 
 /**
  * Reusable Modal Component.
  * @param modalTitle
  * @param modalBody
  * @param modalButtonText
- * @param show
- * @param handleClose
+ * @param isOpen
+ * @param toggle
  */
 function ModalComponent(props) {
-
+  console.log(props.isOpen)
   return (
-<Modal show={props.show} onHide={props.onHide}>
-  <Modal.Header closeButton>
-    <Modal.Title>{props.modalTitle}</Modal.Title>
-  </Modal.Header>
+    <MDBModal isOpen={props.isOpen} toggle={props.toggle}>
+      <MDBModalHeader toggle={props.toggle}>{props.modalTitle}</MDBModalHeader>
 
-  <Modal.Body>
-    <p>{props.modalBody}</p>
-  </Modal.Body>
+      <MDBModalBody>
+        <p>{props.modalBody}</p>
+      </MDBModalBody>
 
-  <Modal.Footer>
-    <Button variant="primary" onClick={props.onHide}>{props.modalButtonText}</Button>
-  </Modal.Footer>
-</Modal>
+      <MDBModalFooter>
+        <MDBBtn color="primary" onClick={props.toggle}>
+          {props.modalButtonText}
+        </MDBBtn>
+      </MDBModalFooter>
+    </MDBModal>
   );
 }
 
