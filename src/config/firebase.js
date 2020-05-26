@@ -1,4 +1,6 @@
 import app from "firebase/app";
+import "firebase/auth";
+import "firebase/storage";
 
 // Set the configuration for your app
 const firebaseConfig = {

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useRef, useState, useEffect, useReducer } from "react";
 import { useAuth } from "../../config/Auth";
 import { storage } from "../../config/firebase";
