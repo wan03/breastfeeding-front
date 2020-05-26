@@ -1,10 +1,9 @@
-import React, { useCallback, useContext } from "react";
-import { withRouter, Redirect } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
+import React, { useCallback } from "react";
+import { withRouter } from "react-router-dom";
+import { MDBContainer, MDBInputGroup, MDBBtn } from "mdbreact";
 import { useAuth } from "../../config/Auth";
 
-const Login = ({ history }) => {
-
+const SignIn = ({ history }) => {
   /**
    * Get the Auth instance from context
    */
@@ -15,38 +14,33 @@ const Login = ({ history }) => {
     async (event) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
-      if(email && password) {
-      try {
-        await auth.signIn(email.value, password.value);
-        history.push("/");
-      } catch (error) {
-        alert(error);
+      if (email && password) {
+        try {
+          await auth.signIn(email.value, password.value);
+          history.push("/");
+        } catch (error) {
+          alert(error);
+        }
       }
-    }
     },
-    [history]
+    [history, auth]
   );
 
   return (
-    <div>
-      <h1> Login</h1>
-      <Form onSubmit={handleLogin}>
-        <Form.Group controlId="formGroupEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control name="email" type="email" placeholder="Enter email" />
-        </Form.Group>
-        <Form.Group controlId="formGroupPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            name="password"
-            type="password"
-            placeholder="Password"
-          />
-        </Form.Group>
-        <Button type="submit">Login</Button>
-      </Form>
-    </div>
+    <MDBContainer>
+      <h1>Sign In</h1>
+      <form onSubmit={handleLogin}>
+        <MDBInputGroup material hint="Enter Email" type="email" id="email" />
+        <MDBInputGroup
+          material
+          hint="Password"
+          type="password"
+          id="password"
+        />
+        <MDBBtn type="submit">Login</MDBBtn>
+      </form>
+    </MDBContainer>
   );
 };
 
-export default withRouter(Login);
+export default withRouter(SignIn);
