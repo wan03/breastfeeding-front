@@ -9,11 +9,11 @@ import {
 
 /**
  * Reusable Modal Component.
- * @param modalTitle
- * @param modalBody
- * @param modalButtonText
- * @param isOpen
- * @param toggle
+ * @param modalTitle text
+ * @param modalBody text
+ * @param modalButtonText text
+ * @param isOpen boolean
+ * @param toggle function
  */
 function ModalComponent(props) {
   console.log(props.isOpen)

@@ -16,6 +16,7 @@ import {
  * @param {buttonText} props
  */
 function CardComponent(props) {
+
   return (
     <MDBCard style={{ width: "18rem" }} >
       <MDBCardImage variant="top" src={props.imgSrc} className="img-fluid" />

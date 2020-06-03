@@ -8,6 +8,7 @@ import { MDBCarouselItem, MDBView } from "mdbreact";
  * @param name
  */
 const CarouselImageItem = ({ images }) => (
+
   <>
     {images.map((image) => {
       return (
