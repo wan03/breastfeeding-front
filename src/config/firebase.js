@@ -1,6 +1,7 @@
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
+import "firebase/firestore";
 
 // Set the configuration for your app
 const firebaseConfig = {
@@ -15,6 +16,8 @@ const firebaseConfig = {
 
 const Firebase = app.initializeApp(firebaseConfig);
 
-const storage = app.storage();
+export const storage = app.storage();
 
-export { storage, Firebase as default };
+export const firestore = app.firestore();
+
+export default Firebase;

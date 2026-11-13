@@ -6,15 +6,18 @@ import Navbar from "./components/navbar/Navbar";
 import Firebase from "./config/firebase";
 import FirebaseContext from "./config/firebaseContext";
 import { AuthProvider } from "./config/Auth";
+import { AgilityProvider } from "./config/AgilityCMSConfig";
 
 function App() {
   return (
     <FirebaseContext.Provider value={Firebase}>
       <AuthProvider>
-        <Router>
-          <Navbar />
-          <Routes />
-        </Router>
+        <AgilityProvider>
+          <Router>
+            <Navbar />
+            <Routes />
+          </Router>
+        </AgilityProvider>
       </AuthProvider>
     </FirebaseContext.Provider>
   );
